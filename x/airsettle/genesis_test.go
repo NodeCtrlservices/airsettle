@@ -3,10 +3,10 @@ package airsettle_test
 import (
 	"testing"
 
-	keepertest "airsettle/testutil/keeper"
-	"airsettle/testutil/nullify"
-	"airsettle/x/airsettle"
-	"airsettle/x/airsettle/types"
+	keepertest "github.com/airchains-network/airsettle/testutil/keeper"
+	"github.com/airchains-network/airsettle/testutil/nullify"
+	"github.com/airchains-network/airsettle/x/airsettle"
+	"github.com/airchains-network/airsettle/x/airsettle/types"
 	"github.com/stretchr/testify/require"
 )
 

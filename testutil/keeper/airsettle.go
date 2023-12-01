@@ -3,8 +3,8 @@ package keeper
 import (
 	"testing"
 
-	"airsettle/x/airsettle/keeper"
-	"airsettle/x/airsettle/types"
+	"github.com/airchains-network/airsettle/x/airsettle/keeper"
+	"github.com/airchains-network/airsettle/x/airsettle/types"
 	tmdb "github.com/cometbft/cometbft-db"
 	"github.com/cometbft/cometbft/libs/log"
 	tmproto "github.com/cometbft/cometbft/proto/tendermint/types"
@@ -34,7 +34,7 @@ func AirsettleKeeper(t testing.TB) (*keeper.Keeper, sdk.Context) {
 		types.Amino,
 		storeKey,
 		memStoreKey,
-		"AirsettleParams",
+		"github.com/airchains-network/airsettleParams",
 	)
 	k := keeper.NewKeeper(
 		cdc,

@@ -8,7 +8,7 @@ import (
 
 	"github.com/cosmos/cosmos-sdk/client"
 	// "github.com/cosmos/cosmos-sdk/client/flags"
-	"airsettle/x/airsettle/types"
+	"github.com/airchains-network/airsettle/x/airsettle/types"
 )
 
 var (

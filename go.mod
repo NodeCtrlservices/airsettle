@@ -1,4 +1,4 @@
-module airsettle
+module github.com/airchains-network/airsettle
 
 go 1.19
 

@@ -4,7 +4,7 @@ import (
 	"context"
 	"errors"
 	"strings"
-	"airsettle/x/airsettle/types"
+	"github.com/airchains-network/airsettle/x/airsettle/types"
 
 	"github.com/cosmos/btcutil/bech32"
 	"github.com/cosmos/cosmos-sdk/store/prefix"

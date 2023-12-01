@@ -3,7 +3,7 @@ package types_test
 import (
 	"testing"
 
-	"airsettle/x/airsettle/types"
+	"github.com/airchains-network/airsettle/x/airsettle/types"
 	"github.com/stretchr/testify/require"
 )
 
