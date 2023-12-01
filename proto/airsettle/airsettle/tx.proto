@@ -1,0 +1,72 @@
+syntax = "proto3";
+
+package airsettle.airsettle;
+
+option go_package = "airsettle/x/airsettle/types";
+
+// Msg defines the Msg service.
+service Msg {
+  rpc AddExecutionLayer   (MsgAddExecutionLayer  ) returns (MsgAddExecutionLayerResponse  );
+  rpc AddBatch            (MsgAddBatch           ) returns (MsgAddBatchResponse           );
+  rpc AddValidator        (MsgAddValidator       ) returns (MsgAddValidatorResponse       );
+  rpc SubmitValidatorVote (MsgSubmitValidatorVote) returns (MsgSubmitValidatorVoteResponse);
+  rpc VerifyMsg           (MsgVerifyMsg          ) returns (MsgVerifyMsgResponse          );
+}
+message MsgAddExecutionLayer {
+  string creator         = 1;
+  string verificationKey = 2;
+  string chainInfo       = 3;
+}
+
+message MsgAddExecutionLayerResponse {
+  string id = 1;
+}
+
+message MsgAddBatch {
+  string creator            = 1;
+  string id                 = 2;
+  uint64 batchNumber        = 3;
+  string merkleRootHash     = 4;
+  string prevMerkleRootHash = 5;
+  string zkProof            = 6;
+}
+
+message MsgAddBatchResponse {
+  bool batchStatus = 1;
+}
+
+message MsgAddValidator {
+  string creator             = 1;
+  string newValidatorAddress = 2;
+  string chainId             = 3;
+}
+
+message MsgAddValidatorResponse {
+  string votingPollId = 1;
+}
+
+message MsgSubmitValidatorVote {
+  string creator = 1;
+  string pollId  = 2;
+  bool   vote    = 3;
+}
+
+message MsgSubmitValidatorVoteResponse {
+  bool   success     = 1;
+  string pollResult  = 2;
+  string message     = 3;
+  string description = 4;
+}
+
+message MsgVerifyMsg {
+  string creator     = 1;
+  string id          = 2;
+  uint64 batchNumber = 3;
+  string inputs      = 4;
+}
+
+message MsgVerifyMsgResponse {
+  bool   result  = 1;
+  string message = 2;
+}
+
