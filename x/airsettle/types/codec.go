@@ -9,28 +9,12 @@ import (
 
 func RegisterCodec(cdc *codec.LegacyAmino) {
 	cdc.RegisterConcrete(&MsgAddExecutionLayer{}, "airsettle/AddExecutionLayer", nil)
-	cdc.RegisterConcrete(&MsgAddBatch{}, "airsettle/AddBatch", nil)
-	cdc.RegisterConcrete(&MsgAddValidator{}, "airsettle/AddValidator", nil)
-	cdc.RegisterConcrete(&MsgSubmitValidatorVote{}, "airsettle/SubmitValidatorVote", nil)
-	cdc.RegisterConcrete(&MsgVerifyMsg{}, "airsettle/VerifyMsg", nil)
 	// this line is used by starport scaffolding # 2
 }
 
 func RegisterInterfaces(registry cdctypes.InterfaceRegistry) {
 	registry.RegisterImplementations((*sdk.Msg)(nil),
 		&MsgAddExecutionLayer{},
-	)
-	registry.RegisterImplementations((*sdk.Msg)(nil),
-		&MsgAddBatch{},
-	)
-	registry.RegisterImplementations((*sdk.Msg)(nil),
-		&MsgAddValidator{},
-	)
-	registry.RegisterImplementations((*sdk.Msg)(nil),
-		&MsgSubmitValidatorVote{},
-	)
-	registry.RegisterImplementations((*sdk.Msg)(nil),
-		&MsgVerifyMsg{},
 	)
 	// this line is used by starport scaffolding # 3
 

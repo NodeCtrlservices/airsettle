@@ -7,7 +7,6 @@ import (
 	"github.com/google/uuid"
 )
 
-
 func (k msgServer) AddExecutionLayer(goCtx context.Context, msg *types.MsgAddExecutionLayer) (*types.MsgAddExecutionLayerResponse, error) {
 	ctx := sdk.UnwrapSDKContext(goCtx)
 
@@ -24,12 +23,16 @@ func (k msgServer) AddExecutionLayer(goCtx context.Context, msg *types.MsgAddExe
 		Creator:              msg.Creator,
 	}
 
-	k.SetExecutionLayers(
+	// save execution layer data.
+	Error := k.AddExecutionLayerHelper(
 		ctx,
 		exelayer,
+		msg.Creator,
 	)
-
-	LogCreateFileOnPath(newUUID, "test/chainid.test.air")
-	Log("Execution layer created. chainId: " + newUUID)
-	return &types.MsgAddExecutionLayerResponse{Id: newUUID}, nil
+	
+	if Error != nil {
+		return nil, Error
+	}
+	
+	return &types.MsgAddExecutionLayerResponse{}, nil
 }

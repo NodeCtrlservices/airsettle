@@ -13,10 +13,11 @@ func (k Keeper) VerificationKey(goCtx context.Context, req *types.QueryVerificat
 	if req == nil {
 		return nil, status.Error(codes.InvalidArgument, "invalid request")
 	}
-	ctx := sdk.UnwrapSDKContext(goCtx)
-	vkey := k.LocalGetvkey(ctx, req.Id)
-	return &types.QueryVerificationKeyResponse{
-		Vkey: vkey,
-	}, nil
-}
 
+	ctx := sdk.UnwrapSDKContext(goCtx)
+
+	// TODO: Process the query
+	_ = ctx
+
+	return &types.QueryVerificationKeyResponse{}, nil
+}

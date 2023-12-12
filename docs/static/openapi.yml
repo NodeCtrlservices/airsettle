@@ -4,453 +4,7 @@ info:
   name: ''
   description: ''
 paths:
-  /airsettle/airsettle/chain_list/{creatorAddress}:
-    get:
-      summary: Queries a list of ChainList items.
-      operationId: AirsettleAirsettleChainList
-      responses:
-        '200':
-          description: A successful response.
-          schema:
-            type: object
-            properties:
-              exelayerChains:
-                type: array
-                items:
-                  type: string
-        default:
-          description: An unexpected error response.
-          schema:
-            type: object
-            properties:
-              code:
-                type: integer
-                format: int32
-              message:
-                type: string
-              details:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    '@type':
-                      type: string
-                  additionalProperties: {}
-      parameters:
-        - name: creatorAddress
-          in: path
-          required: true
-          type: string
-      tags:
-        - Query
-  /airsettle/airsettle/chain_list_detailed/{creatorAddress}:
-    get:
-      summary: Queries a list of ChainListDetailed items.
-      operationId: AirsettleAirsettleChainListDetailed
-      responses:
-        '200':
-          description: A successful response.
-          schema:
-            type: object
-            properties:
-              exelayer:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    validator:
-                      type: array
-                      items:
-                        type: string
-                    votingPower:
-                      type: array
-                      items:
-                        type: string
-                        format: uint64
-                    latestBatch:
-                      type: string
-                      format: uint64
-                    latestMerkleRootHash:
-                      type: string
-                    verificationKey:
-                      type: string
-                    chainInfo:
-                      type: string
-                    id:
-                      type: string
-                    creator:
-                      type: string
-              pagination:
-                type: object
-                properties:
-                  next_key:
-                    type: string
-                    format: byte
-                    description: |-
-                      next_key is the key to be passed to PageRequest.key to
-                      query the next page most efficiently. It will be empty if
-                      there are no more results.
-                  total:
-                    type: string
-                    format: uint64
-                    title: >-
-                      total is total number of results available if
-                      PageRequest.count_total
-
-                      was set, its value is undefined otherwise
-                description: >-
-                  PageResponse is to be embedded in gRPC response messages where
-                  the
-
-                  corresponding request message has used PageRequest.
-
-                   message SomeResponse {
-                           repeated Bar results = 1;
-                           PageResponse page = 2;
-                   }
-        default:
-          description: An unexpected error response.
-          schema:
-            type: object
-            properties:
-              code:
-                type: integer
-                format: int32
-              message:
-                type: string
-              details:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    '@type':
-                      type: string
-                  additionalProperties: {}
-      parameters:
-        - name: creatorAddress
-          in: path
-          required: true
-          type: string
-        - name: pagination.key
-          description: |-
-            key is a value returned in PageResponse.next_key to begin
-            querying the next page most efficiently. Only one of offset or key
-            should be set.
-          in: query
-          required: false
-          type: string
-          format: byte
-        - name: pagination.offset
-          description: >-
-            offset is a numeric offset that can be used when key is unavailable.
-
-            It is less efficient than using key. Only one of offset or key
-            should
-
-            be set.
-          in: query
-          required: false
-          type: string
-          format: uint64
-        - name: pagination.limit
-          description: >-
-            limit is the total number of results to be returned in the result
-            page.
-
-            If left empty it will default to a value to be set by each app.
-          in: query
-          required: false
-          type: string
-          format: uint64
-        - name: pagination.count_total
-          description: >-
-            count_total is set to true  to indicate that the result set should
-            include
-
-            a count of the total number of items available for pagination in
-            UIs.
-
-            count_total is only respected when offset is used. It is ignored
-            when key
-
-            is set.
-          in: query
-          required: false
-          type: boolean
-        - name: pagination.reverse
-          description: >-
-            reverse is set to true if results are to be returned in the
-            descending order.
-
-
-            Since: cosmos-sdk 0.43
-          in: query
-          required: false
-          type: boolean
-      tags:
-        - Query
-  /airsettle/airsettle/list_add_validators_polls:
-    get:
-      summary: Queries a list of ListAddValidatorsPolls items.
-      operationId: AirsettleAirsettleListAddValidatorsPolls
-      responses:
-        '200':
-          description: A successful response.
-          schema:
-            type: object
-            properties:
-              pollIds:
-                type: array
-                items:
-                  type: string
-              pagination:
-                type: object
-                properties:
-                  next_key:
-                    type: string
-                    format: byte
-                    description: |-
-                      next_key is the key to be passed to PageRequest.key to
-                      query the next page most efficiently. It will be empty if
-                      there are no more results.
-                  total:
-                    type: string
-                    format: uint64
-                    title: >-
-                      total is total number of results available if
-                      PageRequest.count_total
-
-                      was set, its value is undefined otherwise
-                description: >-
-                  PageResponse is to be embedded in gRPC response messages where
-                  the
-
-                  corresponding request message has used PageRequest.
-
-                   message SomeResponse {
-                           repeated Bar results = 1;
-                           PageResponse page = 2;
-                   }
-        default:
-          description: An unexpected error response.
-          schema:
-            type: object
-            properties:
-              code:
-                type: integer
-                format: int32
-              message:
-                type: string
-              details:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    '@type':
-                      type: string
-                  additionalProperties: {}
-      parameters:
-        - name: pagination.key
-          description: |-
-            key is a value returned in PageResponse.next_key to begin
-            querying the next page most efficiently. Only one of offset or key
-            should be set.
-          in: query
-          required: false
-          type: string
-          format: byte
-        - name: pagination.offset
-          description: >-
-            offset is a numeric offset that can be used when key is unavailable.
-
-            It is less efficient than using key. Only one of offset or key
-            should
-
-            be set.
-          in: query
-          required: false
-          type: string
-          format: uint64
-        - name: pagination.limit
-          description: >-
-            limit is the total number of results to be returned in the result
-            page.
-
-            If left empty it will default to a value to be set by each app.
-          in: query
-          required: false
-          type: string
-          format: uint64
-        - name: pagination.count_total
-          description: >-
-            count_total is set to true  to indicate that the result set should
-            include
-
-            a count of the total number of items available for pagination in
-            UIs.
-
-            count_total is only respected when offset is used. It is ignored
-            when key
-
-            is set.
-          in: query
-          required: false
-          type: boolean
-        - name: pagination.reverse
-          description: >-
-            reverse is set to true if results are to be returned in the
-            descending order.
-
-
-            Since: cosmos-sdk 0.43
-          in: query
-          required: false
-          type: boolean
-      tags:
-        - Query
-  /airsettle/airsettle/list_execution_layers:
-    get:
-      summary: Queries a list of ListExecutionLayers items.
-      operationId: AirsettleAirsettleListExecutionLayers
-      responses:
-        '200':
-          description: A successful response.
-          schema:
-            type: object
-            properties:
-              exelayer:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    validator:
-                      type: array
-                      items:
-                        type: string
-                    votingPower:
-                      type: array
-                      items:
-                        type: string
-                        format: uint64
-                    latestBatch:
-                      type: string
-                      format: uint64
-                    latestMerkleRootHash:
-                      type: string
-                    verificationKey:
-                      type: string
-                    chainInfo:
-                      type: string
-                    id:
-                      type: string
-                    creator:
-                      type: string
-              pagination:
-                type: object
-                properties:
-                  next_key:
-                    type: string
-                    format: byte
-                    description: |-
-                      next_key is the key to be passed to PageRequest.key to
-                      query the next page most efficiently. It will be empty if
-                      there are no more results.
-                  total:
-                    type: string
-                    format: uint64
-                    title: >-
-                      total is total number of results available if
-                      PageRequest.count_total
-
-                      was set, its value is undefined otherwise
-                description: >-
-                  PageResponse is to be embedded in gRPC response messages where
-                  the
-
-                  corresponding request message has used PageRequest.
-
-                   message SomeResponse {
-                           repeated Bar results = 1;
-                           PageResponse page = 2;
-                   }
-        default:
-          description: An unexpected error response.
-          schema:
-            type: object
-            properties:
-              code:
-                type: integer
-                format: int32
-              message:
-                type: string
-              details:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    '@type':
-                      type: string
-                  additionalProperties: {}
-      parameters:
-        - name: pagination.key
-          description: |-
-            key is a value returned in PageResponse.next_key to begin
-            querying the next page most efficiently. Only one of offset or key
-            should be set.
-          in: query
-          required: false
-          type: string
-          format: byte
-        - name: pagination.offset
-          description: >-
-            offset is a numeric offset that can be used when key is unavailable.
-
-            It is less efficient than using key. Only one of offset or key
-            should
-
-            be set.
-          in: query
-          required: false
-          type: string
-          format: uint64
-        - name: pagination.limit
-          description: >-
-            limit is the total number of results to be returned in the result
-            page.
-
-            If left empty it will default to a value to be set by each app.
-          in: query
-          required: false
-          type: string
-          format: uint64
-        - name: pagination.count_total
-          description: >-
-            count_total is set to true  to indicate that the result set should
-            include
-
-            a count of the total number of items available for pagination in
-            UIs.
-
-            count_total is only respected when offset is used. It is ignored
-            when key
-
-            is set.
-          in: query
-          required: false
-          type: boolean
-        - name: pagination.reverse
-          description: >-
-            reverse is set to true if results are to be returned in the
-            descending order.
-
-
-            Since: cosmos-sdk 0.43
-          in: query
-          required: false
-          type: boolean
-      tags:
-        - Query
-  /airsettle/airsettle/params:
+  /airchains-network/airsettle/airsettle/params:
     get:
       summary: Parameters queries the parameters of the module.
       operationId: AirsettleAirsettleParams
@@ -486,180 +40,7 @@ paths:
                   additionalProperties: {}
       tags:
         - Query
-  /airsettle/airsettle/show_batch/{id}/{batchNumber}:
-    get:
-      summary: Queries a list of ShowBatch items.
-      operationId: AirsettleAirsettleShowBatch
-      responses:
-        '200':
-          description: A successful response.
-          schema:
-            type: object
-            properties:
-              batch:
-                type: object
-                properties:
-                  batchNumber:
-                    type: string
-                    format: uint64
-                  merkleRootHash:
-                    type: string
-                  prevMerkleRootHash:
-                    type: string
-                  zkProof:
-                    type: string
-        default:
-          description: An unexpected error response.
-          schema:
-            type: object
-            properties:
-              code:
-                type: integer
-                format: int32
-              message:
-                type: string
-              details:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    '@type':
-                      type: string
-                  additionalProperties: {}
-      parameters:
-        - name: id
-          in: path
-          required: true
-          type: string
-        - name: batchNumber
-          in: path
-          required: true
-          type: string
-          format: uint64
-      tags:
-        - Query
-  /airsettle/airsettle/show_execution_layer/{id}:
-    get:
-      summary: Queries a list of ShowExecutionLayer items.
-      operationId: AirsettleAirsettleShowExecutionLayer
-      responses:
-        '200':
-          description: A successful response.
-          schema:
-            type: object
-            properties:
-              exelayer:
-                type: object
-                properties:
-                  validator:
-                    type: array
-                    items:
-                      type: string
-                  votingPower:
-                    type: array
-                    items:
-                      type: string
-                      format: uint64
-                  latestBatch:
-                    type: string
-                    format: uint64
-                  latestMerkleRootHash:
-                    type: string
-                  verificationKey:
-                    type: string
-                  chainInfo:
-                    type: string
-                  id:
-                    type: string
-                  creator:
-                    type: string
-        default:
-          description: An unexpected error response.
-          schema:
-            type: object
-            properties:
-              code:
-                type: integer
-                format: int32
-              message:
-                type: string
-              details:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    '@type':
-                      type: string
-                  additionalProperties: {}
-      parameters:
-        - name: id
-          in: path
-          required: true
-          type: string
-      tags:
-        - Query
-  /airsettle/airsettle/validator_poll_details/{pollId}:
-    get:
-      summary: Queries a list of ValidatorPollDetails items.
-      operationId: AirsettleAirsettleValidatorPollDetails
-      responses:
-        '200':
-          description: A successful response.
-          schema:
-            type: object
-            properties:
-              poll:
-                type: object
-                properties:
-                  pollId:
-                    type: string
-                  chainId:
-                    type: string
-                  newValidator:
-                    type: string
-                  votesDoneBy:
-                    type: array
-                    items:
-                      type: string
-                  votes:
-                    type: array
-                    items:
-                      type: string
-                  totalValidators:
-                    type: string
-                    format: uint64
-                  isComplete:
-                    type: boolean
-                  startDate:
-                    type: string
-                  pollCreator:
-                    type: string
-        default:
-          description: An unexpected error response.
-          schema:
-            type: object
-            properties:
-              code:
-                type: integer
-                format: int32
-              message:
-                type: string
-              details:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    '@type':
-                      type: string
-                  additionalProperties: {}
-      parameters:
-        - name: pollId
-          in: path
-          required: true
-          type: string
-      tags:
-        - Query
-  /airsettle/airsettle/verification_key/{id}:
+  /airchains-network/airsettle/airsettle/verification_key/{id}:
     get:
       summary: Queries a list of VerificationKey items.
       operationId: AirsettleAirsettleVerificationKey
@@ -691,54 +72,6 @@ paths:
                   additionalProperties: {}
       parameters:
         - name: id
-          in: path
-          required: true
-          type: string
-      tags:
-        - Query
-  /airsettle/airsettle/verify/{id}/{batchNumber}/{inputs}:
-    get:
-      summary: Queries a list of Verify items.
-      operationId: AirsettleAirsettleVerify
-      responses:
-        '200':
-          description: A successful response.
-          schema:
-            type: object
-            properties:
-              result:
-                type: boolean
-              message:
-                type: string
-        default:
-          description: An unexpected error response.
-          schema:
-            type: object
-            properties:
-              code:
-                type: integer
-                format: int32
-              message:
-                type: string
-              details:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    '@type':
-                      type: string
-                  additionalProperties: {}
-      parameters:
-        - name: id
-          in: path
-          required: true
-          type: string
-        - name: batchNumber
-          in: path
-          required: true
-          type: string
-          format: uint64
-        - name: inputs
           in: path
           required: true
           type: string
@@ -47178,257 +46511,16 @@ paths:
       tags:
         - Query
 definitions:
-  airsettle.airsettle.Batch:
-    type: object
-    properties:
-      batchNumber:
-        type: string
-        format: uint64
-      merkleRootHash:
-        type: string
-      prevMerkleRootHash:
-        type: string
-      zkProof:
-        type: string
-  airsettle.airsettle.Exelayer:
-    type: object
-    properties:
-      validator:
-        type: array
-        items:
-          type: string
-      votingPower:
-        type: array
-        items:
-          type: string
-          format: uint64
-      latestBatch:
-        type: string
-        format: uint64
-      latestMerkleRootHash:
-        type: string
-      verificationKey:
-        type: string
-      chainInfo:
-        type: string
-      id:
-        type: string
-      creator:
-        type: string
-  airsettle.airsettle.MsgAddBatchResponse:
-    type: object
-    properties:
-      batchStatus:
-        type: boolean
   airsettle.airsettle.MsgAddExecutionLayerResponse:
     type: object
     properties:
-      id:
-        type: string
-  airsettle.airsettle.MsgAddValidatorResponse:
-    type: object
-    properties:
-      votingPollId:
-        type: string
-  airsettle.airsettle.MsgSubmitValidatorVoteResponse:
-    type: object
-    properties:
       success:
-        type: boolean
-      pollResult:
-        type: string
-      message:
-        type: string
-      description:
-        type: string
-  airsettle.airsettle.MsgVerifyMsgResponse:
-    type: object
-    properties:
-      result:
         type: boolean
       message:
         type: string
   airsettle.airsettle.Params:
     type: object
     description: Params defines the parameters for the module.
-  airsettle.airsettle.Poll:
-    type: object
-    properties:
-      pollId:
-        type: string
-      chainId:
-        type: string
-      newValidator:
-        type: string
-      votesDoneBy:
-        type: array
-        items:
-          type: string
-      votes:
-        type: array
-        items:
-          type: string
-      totalValidators:
-        type: string
-        format: uint64
-      isComplete:
-        type: boolean
-      startDate:
-        type: string
-      pollCreator:
-        type: string
-  airsettle.airsettle.QueryChainListDetailedResponse:
-    type: object
-    properties:
-      exelayer:
-        type: array
-        items:
-          type: object
-          properties:
-            validator:
-              type: array
-              items:
-                type: string
-            votingPower:
-              type: array
-              items:
-                type: string
-                format: uint64
-            latestBatch:
-              type: string
-              format: uint64
-            latestMerkleRootHash:
-              type: string
-            verificationKey:
-              type: string
-            chainInfo:
-              type: string
-            id:
-              type: string
-            creator:
-              type: string
-      pagination:
-        type: object
-        properties:
-          next_key:
-            type: string
-            format: byte
-            description: |-
-              next_key is the key to be passed to PageRequest.key to
-              query the next page most efficiently. It will be empty if
-              there are no more results.
-          total:
-            type: string
-            format: uint64
-            title: >-
-              total is total number of results available if
-              PageRequest.count_total
-
-              was set, its value is undefined otherwise
-        description: |-
-          PageResponse is to be embedded in gRPC response messages where the
-          corresponding request message has used PageRequest.
-
-           message SomeResponse {
-                   repeated Bar results = 1;
-                   PageResponse page = 2;
-           }
-  airsettle.airsettle.QueryChainListResponse:
-    type: object
-    properties:
-      exelayerChains:
-        type: array
-        items:
-          type: string
-  airsettle.airsettle.QueryListAddValidatorsPollsResponse:
-    type: object
-    properties:
-      pollIds:
-        type: array
-        items:
-          type: string
-      pagination:
-        type: object
-        properties:
-          next_key:
-            type: string
-            format: byte
-            description: |-
-              next_key is the key to be passed to PageRequest.key to
-              query the next page most efficiently. It will be empty if
-              there are no more results.
-          total:
-            type: string
-            format: uint64
-            title: >-
-              total is total number of results available if
-              PageRequest.count_total
-
-              was set, its value is undefined otherwise
-        description: |-
-          PageResponse is to be embedded in gRPC response messages where the
-          corresponding request message has used PageRequest.
-
-           message SomeResponse {
-                   repeated Bar results = 1;
-                   PageResponse page = 2;
-           }
-  airsettle.airsettle.QueryListExecutionLayersResponse:
-    type: object
-    properties:
-      exelayer:
-        type: array
-        items:
-          type: object
-          properties:
-            validator:
-              type: array
-              items:
-                type: string
-            votingPower:
-              type: array
-              items:
-                type: string
-                format: uint64
-            latestBatch:
-              type: string
-              format: uint64
-            latestMerkleRootHash:
-              type: string
-            verificationKey:
-              type: string
-            chainInfo:
-              type: string
-            id:
-              type: string
-            creator:
-              type: string
-      pagination:
-        type: object
-        properties:
-          next_key:
-            type: string
-            format: byte
-            description: |-
-              next_key is the key to be passed to PageRequest.key to
-              query the next page most efficiently. It will be empty if
-              there are no more results.
-          total:
-            type: string
-            format: uint64
-            title: >-
-              total is total number of results available if
-              PageRequest.count_total
-
-              was set, its value is undefined otherwise
-        description: |-
-          PageResponse is to be embedded in gRPC response messages where the
-          corresponding request message has used PageRequest.
-
-           message SomeResponse {
-                   repeated Bar results = 1;
-                   PageResponse page = 2;
-           }
   airsettle.airsettle.QueryParamsResponse:
     type: object
     properties:
@@ -47436,167 +46528,11 @@ definitions:
         description: params holds all the parameters of this module.
         type: object
     description: QueryParamsResponse is response type for the Query/Params RPC method.
-  airsettle.airsettle.QueryShowBatchResponse:
-    type: object
-    properties:
-      batch:
-        type: object
-        properties:
-          batchNumber:
-            type: string
-            format: uint64
-          merkleRootHash:
-            type: string
-          prevMerkleRootHash:
-            type: string
-          zkProof:
-            type: string
-  airsettle.airsettle.QueryShowExecutionLayerResponse:
-    type: object
-    properties:
-      exelayer:
-        type: object
-        properties:
-          validator:
-            type: array
-            items:
-              type: string
-          votingPower:
-            type: array
-            items:
-              type: string
-              format: uint64
-          latestBatch:
-            type: string
-            format: uint64
-          latestMerkleRootHash:
-            type: string
-          verificationKey:
-            type: string
-          chainInfo:
-            type: string
-          id:
-            type: string
-          creator:
-            type: string
-  airsettle.airsettle.QueryValidatorPollDetailsResponse:
-    type: object
-    properties:
-      poll:
-        type: object
-        properties:
-          pollId:
-            type: string
-          chainId:
-            type: string
-          newValidator:
-            type: string
-          votesDoneBy:
-            type: array
-            items:
-              type: string
-          votes:
-            type: array
-            items:
-              type: string
-          totalValidators:
-            type: string
-            format: uint64
-          isComplete:
-            type: boolean
-          startDate:
-            type: string
-          pollCreator:
-            type: string
   airsettle.airsettle.QueryVerificationKeyResponse:
     type: object
     properties:
       vkey:
         type: string
-  airsettle.airsettle.QueryVerifyResponse:
-    type: object
-    properties:
-      result:
-        type: boolean
-      message:
-        type: string
-  cosmos.base.query.v1beta1.PageRequest:
-    type: object
-    properties:
-      key:
-        type: string
-        format: byte
-        description: |-
-          key is a value returned in PageResponse.next_key to begin
-          querying the next page most efficiently. Only one of offset or key
-          should be set.
-      offset:
-        type: string
-        format: uint64
-        description: |-
-          offset is a numeric offset that can be used when key is unavailable.
-          It is less efficient than using key. Only one of offset or key should
-          be set.
-      limit:
-        type: string
-        format: uint64
-        description: >-
-          limit is the total number of results to be returned in the result
-          page.
-
-          If left empty it will default to a value to be set by each app.
-      count_total:
-        type: boolean
-        description: >-
-          count_total is set to true  to indicate that the result set should
-          include
-
-          a count of the total number of items available for pagination in UIs.
-
-          count_total is only respected when offset is used. It is ignored when
-          key
-
-          is set.
-      reverse:
-        type: boolean
-        description: >-
-          reverse is set to true if results are to be returned in the descending
-          order.
-
-
-          Since: cosmos-sdk 0.43
-    description: |-
-      message SomeRequest {
-               Foo some_parameter = 1;
-               PageRequest pagination = 2;
-       }
-    title: |-
-      PageRequest is to be embedded in gRPC request messages for efficient
-      pagination. Ex:
-  cosmos.base.query.v1beta1.PageResponse:
-    type: object
-    properties:
-      next_key:
-        type: string
-        format: byte
-        description: |-
-          next_key is the key to be passed to PageRequest.key to
-          query the next page most efficiently. It will be empty if
-          there are no more results.
-      total:
-        type: string
-        format: uint64
-        title: |-
-          total is total number of results available if PageRequest.count_total
-          was set, its value is undefined otherwise
-    description: |-
-      PageResponse is to be embedded in gRPC response messages where the
-      corresponding request message has used PageRequest.
-
-       message SomeResponse {
-               repeated Bar results = 1;
-               PageResponse page = 2;
-       }
   google.protobuf.Any:
     type: object
     properties:
@@ -49056,6 +47992,83 @@ definitions:
             type: string
             format: uint64
     description: QueryParamsResponse is the response type for the Query/Params RPC method.
+  cosmos.base.query.v1beta1.PageRequest:
+    type: object
+    properties:
+      key:
+        type: string
+        format: byte
+        description: |-
+          key is a value returned in PageResponse.next_key to begin
+          querying the next page most efficiently. Only one of offset or key
+          should be set.
+      offset:
+        type: string
+        format: uint64
+        description: |-
+          offset is a numeric offset that can be used when key is unavailable.
+          It is less efficient than using key. Only one of offset or key should
+          be set.
+      limit:
+        type: string
+        format: uint64
+        description: >-
+          limit is the total number of results to be returned in the result
+          page.
+
+          If left empty it will default to a value to be set by each app.
+      count_total:
+        type: boolean
+        description: >-
+          count_total is set to true  to indicate that the result set should
+          include
+
+          a count of the total number of items available for pagination in UIs.
+
+          count_total is only respected when offset is used. It is ignored when
+          key
+
+          is set.
+      reverse:
+        type: boolean
+        description: >-
+          reverse is set to true if results are to be returned in the descending
+          order.
+
+
+          Since: cosmos-sdk 0.43
+    description: |-
+      message SomeRequest {
+               Foo some_parameter = 1;
+               PageRequest pagination = 2;
+       }
+    title: |-
+      PageRequest is to be embedded in gRPC request messages for efficient
+      pagination. Ex:
+  cosmos.base.query.v1beta1.PageResponse:
+    type: object
+    properties:
+      next_key:
+        type: string
+        format: byte
+        description: |-
+          next_key is the key to be passed to PageRequest.key to
+          query the next page most efficiently. It will be empty if
+          there are no more results.
+      total:
+        type: string
+        format: uint64
+        title: |-
+          total is total number of results available if PageRequest.count_total
+          was set, its value is undefined otherwise
+    description: |-
+      PageResponse is to be embedded in gRPC response messages where the
+      corresponding request message has used PageRequest.
+
+       message SomeResponse {
+               repeated Bar results = 1;
+               PageResponse page = 2;
+       }
   cosmos.authz.v1beta1.Grant:
     type: object
     properties:

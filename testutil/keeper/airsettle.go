@@ -34,7 +34,7 @@ func AirsettleKeeper(t testing.TB) (*keeper.Keeper, sdk.Context) {
 		types.Amino,
 		storeKey,
 		memStoreKey,
-		"github.com/airchains-network/airsettleParams",
+		"AirsettleParams",
 	)
 	k := keeper.NewKeeper(
 		cdc,

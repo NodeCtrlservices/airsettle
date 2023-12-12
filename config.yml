@@ -4,23 +4,18 @@ accounts:
   coins:
   - 20000token
   - 200000000stake
-  mnemonic: play butter frown city voyage pupil rabbit wheat thrive mind skate turkey helmet thrive door either differ gate exhibit impose city swallow goat faint
 - name: bob
   coins:
   - 10000token
   - 100000000stake
-- name: faucet 
-  coins:
-  - 100000000token
 client:
   openapi:
     path: docs/static/openapi.yml
 faucet:
-  name: faucet 
-  coins: ["1token"]
-  coins_max: [ "1token"]
-  port: 6969
-  rate_limit_window: 3s
+  name: bob
+  coins:
+  - 5token
+  - 100000stake
 validators:
 - name: alice
   bonded: 100000000stake

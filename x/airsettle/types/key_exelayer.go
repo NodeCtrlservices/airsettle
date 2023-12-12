@@ -6,9 +6,11 @@ var _ binary.ByteOrder
 
 const (
 	// ExecutionlayersKeyPrefix is the prefix to retrieve all Executionlayers
-	ExelayerKeyPrefix = "Exelayer/value/"
+	ExecutionLayerKey = "Exelayer/id/"
 	VerificationKey   = "Exelayer/vk/"
 	CounterStore      = "Exelayer/counter/"
+	ChainAdminKey     = "ExelayerChain/admin/"
+
 	ExelayerChainKey  = "ExelayerChain/value"
 	PollKeyPrefix     = "Poll/value/"
 )
