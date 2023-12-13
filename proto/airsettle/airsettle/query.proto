@@ -82,7 +82,7 @@ message QueryListAllExecutionLayersRequest {
 }
 
 message QueryListAllExecutionLayersResponse {
-  Exelayer                               exelayer   = 1;
+  repeated Exelayer                      exelayer   = 1;
   cosmos.base.query.v1beta1.PageResponse pagination = 2;
 }
 

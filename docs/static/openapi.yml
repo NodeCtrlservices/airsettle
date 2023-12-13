@@ -15,30 +15,32 @@ paths:
             type: object
             properties:
               exelayer:
-                type: object
-                properties:
-                  validator:
-                    type: array
-                    items:
-                      type: string
-                  votingPower:
-                    type: array
-                    items:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    validator:
+                      type: array
+                      items:
+                        type: string
+                    votingPower:
+                      type: array
+                      items:
+                        type: string
+                        format: uint64
+                    latestBatch:
                       type: string
                       format: uint64
-                  latestBatch:
-                    type: string
-                    format: uint64
-                  latestMerkleRootHash:
-                    type: string
-                  verificationKey:
-                    type: string
-                  chainInfo:
-                    type: string
-                  id:
-                    type: string
-                  creator:
-                    type: string
+                    latestMerkleRootHash:
+                      type: string
+                    verificationKey:
+                      type: string
+                    chainInfo:
+                      type: string
+                    id:
+                      type: string
+                    creator:
+                      type: string
               pagination:
                 type: object
                 properties:
@@ -46810,30 +46812,32 @@ definitions:
     type: object
     properties:
       exelayer:
-        type: object
-        properties:
-          validator:
-            type: array
-            items:
-              type: string
-          votingPower:
-            type: array
-            items:
+        type: array
+        items:
+          type: object
+          properties:
+            validator:
+              type: array
+              items:
+                type: string
+            votingPower:
+              type: array
+              items:
+                type: string
+                format: uint64
+            latestBatch:
               type: string
               format: uint64
-          latestBatch:
-            type: string
-            format: uint64
-          latestMerkleRootHash:
-            type: string
-          verificationKey:
-            type: string
-          chainInfo:
-            type: string
-          id:
-            type: string
-          creator:
-            type: string
+            latestMerkleRootHash:
+              type: string
+            verificationKey:
+              type: string
+            chainInfo:
+              type: string
+            id:
+              type: string
+            creator:
+              type: string
       pagination:
         type: object
         properties:
