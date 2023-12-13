@@ -1,2 +1,2 @@
-address="cosmos19wjma5rfvpsj4gczmnlmy5awmxxe6dlr9q5zum"
+address="air15nt3l400td56dhvy7tk4pehv2rqu2fw53fw59t"
 airsettled tx bank send alice ${address} 10000token -y

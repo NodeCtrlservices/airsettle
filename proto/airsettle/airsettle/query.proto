@@ -6,6 +6,7 @@ import "gogoproto/gogo.proto";
 import "google/api/annotations.proto";
 import "cosmos/base/query/v1beta1/pagination.proto";
 import "airsettle/airsettle/params.proto";
+import "airsettle/airsettle/exelayer.proto";
 
 option go_package = "github.com/airchains-network/airsettle/x/airsettle/types";
 
@@ -21,6 +22,24 @@ service Query {
   // Queries a list of VerificationKey items.
   rpc VerificationKey (QueryVerificationKeyRequest) returns (QueryVerificationKeyResponse) {
     option (google.api.http).get = "/airchains-network/airsettle/airsettle/verification_key/{id}";
+  
+  }
+  
+  // Queries a list of ShowExecutionLayerByAddress items.
+  rpc ShowExecutionLayerByAddress (QueryShowExecutionLayerByAddressRequest) returns (QueryShowExecutionLayerByAddressResponse) {
+    option (google.api.http).get = "/airchains-network/airsettle/airsettle/show_execution_layer_by_address/{address}";
+  
+  }
+  
+  // Queries a list of ShowExecutionLayerById items.
+  rpc ShowExecutionLayerById (QueryShowExecutionLayerByIdRequest) returns (QueryShowExecutionLayerByIdResponse) {
+    option (google.api.http).get = "/airchains-network/airsettle/airsettle/show_execution_layer_by_id/{id}";
+  
+  }
+  
+  // Queries a list of ListAllExecutionLayers items.
+  rpc ListAllExecutionLayers (QueryListAllExecutionLayersRequest) returns (QueryListAllExecutionLayersResponse) {
+    option (google.api.http).get = "/airchains-network/airsettle/airsettle/list_all_execution_layers";
   
   }
 }
@@ -40,5 +59,30 @@ message QueryVerificationKeyRequest {
 
 message QueryVerificationKeyResponse {
   string vkey = 1;
+}
+
+message QueryShowExecutionLayerByAddressRequest {
+  string address = 1;
+}
+
+message QueryShowExecutionLayerByAddressResponse {
+  Exelayer exelayer = 1;
+}
+
+message QueryShowExecutionLayerByIdRequest {
+  string id = 1;
+}
+
+message QueryShowExecutionLayerByIdResponse {
+  Exelayer exelayer = 1;
+}
+
+message QueryListAllExecutionLayersRequest {
+  cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryListAllExecutionLayersResponse {
+  Exelayer                               exelayer   = 1;
+  cosmos.base.query.v1beta1.PageResponse pagination = 2;
 }
 

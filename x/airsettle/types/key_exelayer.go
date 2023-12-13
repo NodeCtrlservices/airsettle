@@ -8,11 +8,11 @@ const (
 	// ExecutionlayersKeyPrefix is the prefix to retrieve all Executionlayers
 	ExecutionLayerKey = "Exelayer/id/"
 	VerificationKey   = "Exelayer/vk/"
-	CounterStore      = "Exelayer/counter/"
+	CounterStoreKey   = "Exelayer/counter/"
 	ChainAdminKey     = "ExelayerChain/admin/"
 
-	ExelayerChainKey  = "ExelayerChain/value"
-	PollKeyPrefix     = "Poll/value/"
+	ExelayerChainKey = "ExelayerChain/value"
+	PollKeyPrefix    = "Poll/value/"
 )
 
 // ExecutionlayersKey returns the store key to retrieve a Executionlayers from the index fields
